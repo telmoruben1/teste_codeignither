@@ -98,6 +98,7 @@ class Login extends CI_Controller
     // $teste=$this->input->post('user');
     // unset($_COOKIE["logado"]);
     // set_cookie("logado",0);
+    // print_r("deu");
     $_COOKIE['logado']=0;
     $data['email']="";
     $this->load->view('templates/header',$data);

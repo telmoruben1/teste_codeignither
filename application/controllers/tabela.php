@@ -25,77 +25,71 @@ class Tabela extends CI_Controller
 
     // $data['title'] = 'Create a news item';
 
-    $this->form_validation->set_rules('user', 'USER', 'required');
-    $this->form_validation->set_rules('password', 'PASS', 'required');
-
-    if ($this->form_validation->run() === FALSE)
-    {
-      $this->load->view('templates/header');
-      $this->load->view('templates/corrossel');
-      $this->load->view('templates/footer');
-
-    }
-    else
-    {
-      $executa=$this->login_model->set_verifica_login();
-      $user=$_COOKIE["user"];
-      if($executa==true){
-        $data['email']=$user;
+      $executa=$this->tabela_model->set_verifica_tabela();
+      if($executa!=false){
+        $data['array']=$executa;
+        $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+        if(!empty($array_auxiliar[1])){
+          $data['email'] = $array_auxiliar[1];
+        }else{
+          $data['email']="";
+        }
         $this->load->view('templates/header',$data);
-        $this->load->view('templates/carrossel');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/tabela',$data);
+        $this->load->view('templates/footer',$data);
       }else{
-        $this->load->view('templates/header');
-        $this->load->view('templates/carrossel');
-        $this->load->view('templates/footer');
+        $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+        // print_r($array_auxiliar);
+        if(!empty($array_auxiliar[1])){
+          $data['email'] = $array_auxiliar[1];
+        }else{
+          $data['email']="";
+        }
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/tabela',$data);
+        $this->load->view('templates/footer',$data);
 
       }
 
-    }
+
   }
-  public function registo()
+  public function deleterow()
   {
     $this->load->helper('form');
     $this->load->library('form_validation');
-
+    $resposta=$this->input->post('id_comentario');
+    // $resposta=5;
     // $data['title'] = 'Create a news item';
 
-    $this->form_validation->set_rules('user', 'USER', 'required');
-    $this->form_validation->set_rules('password', 'PASS', 'required');
-
-    if ($this->form_validation->run() === FALSE)
-    {
-      $this->load->view('templates/header');
-      $this->load->view('templates/corrossel');
-      $this->load->view('templates/footer');
-
-    }
-    else
-    {
-      $executa=$this->login_model->set_registo();
-      if($executa==true){
-        $data['email']=$_COOKIE["user"];
+      $executa=$this->tabela_model->delete_row_of_table($resposta);
+      if($executa!=false){
+        $data['array']=$executa;
+        $data['email']="merda1";
+        // $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+        // if(!empty($array_auxiliar[1])){
+        //   $data['email'] = $array_auxiliar[1];
+        // }else{
+        //   $data['email']="";
+        // }
         $this->load->view('templates/header',$data);
-        $this->load->view('templates/carrossel');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/tabela',$data);
+        $this->load->view('templates/footer',$data);
       }else{
-        $this->load->view('templates/header');
-        $this->load->view('templates/carrossel');
-        $this->load->view('templates/footer');
+        // $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+        // if(!empty($array_auxiliar[1])){
+        //   $data['email'] = $array_auxiliar[1];
+        // }else{
+        //   $data['email']="";
+        // }
+        $data['email']="merda2";
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/tabela',$data);
+        $this->load->view('templates/footer',$data);
 
       }
 
-    }
+
   }
-  public function logout()
-  {
-    // $teste=$this->input->post('user');
-    // unset($_COOKIE["logado"]);
-    set_cookie("logado",0);
-    $data['email']="";
-    $this->load->view('templates/header',$data);
-    $this->load->view('templates/carrossel');
-    $this->load->view('templates/footer');
-  }
+
 }
 ?>

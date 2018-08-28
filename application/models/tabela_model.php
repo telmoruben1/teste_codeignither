@@ -12,40 +12,34 @@ class Tabela_model extends CI_Model
   }
 
 
-  public function set_verifica_login()
+  public function set_verifica_tabela()
   {
     $this->load->helper('url');
-    $query = $this->db->get_where('login', array('email' => $this->input->post('user'),'password' => $this->input->post('password')));
-    if($query->num_rows()>0){
-      $cookie=$this->input->post('user');
-      setcookie("user",$cookie);
-      setcookie("logado",true);
-      return true;
+    $titulo=$this->input->post('titulo');
+    $class=$this->input->post('classificacao');
+    $bar_id=$this->input->post('id_bar');
+    // $query = $this->db->get_where('comentario', array('titulo' => $this->input->post('titulo'),'classificacao' => $this->input->post('classificacao'),'id_bar' => $this->input->post('id_bar')));
+    $query = $this->db->query("SELECT titulo,classificacao,id_bar,id FROM comentarios WHERE id_bar=$bar_id AND classificacao=$class AND titulo='$titulo';");
+    $result=$query->result_array();
+    // print_r($result);
+    if(!empty($result)){
+
+      return $result;
     }else{
       return false;
     }
 
 
   }
-  public function set_registo()
+  public function delete_row_of_table($value)
   {
     $this->load->helper('url');
 
 
     $data = array(
-      'user' => $this->input->post('user'),
-      'password' => $this->input->post('password'),
-      'email' => $this->input->post('email'),
-      'phone' => $this->input->post('phone'),
-      'name' => $this->input->post('name')
+      'id' => $value
     );
-    if($this->db->insert('login', $data)==true){
-      // set_cookie("email",$this->input->post('email'));
-      // set_cookie("password",$this->input->post('password'));
-      setcookie("user",$this->input->post('email'));
-      setcookie("pass",$this->input->post('password'));
-      setcookie("logado",true);
-
+    if($this->db->delete('comentarios', $data)==true){
       return true;
     }else{
 
