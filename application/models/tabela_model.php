@@ -48,6 +48,22 @@ class Tabela_model extends CI_Model
 
 
   }
+  public function update_row_of_table($id,$data)
+  {
+    $this->load->helper('url');
+    $this->db->where('id', $id);
+    if($this->db->update('comentarios', $data)==true){
+      return true;
+    }else{
+      return false;
+    }
+
+
+
+
+
+  }
+
 
 
 }

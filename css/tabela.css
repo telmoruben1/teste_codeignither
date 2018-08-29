@@ -25,3 +25,9 @@
 .table{
   width: 50%!important;
 }
+#janelaUpdate{
+  width: 20%;
+  height: auto;
+  margin-left: 10%;
+  position: absolute;
+}

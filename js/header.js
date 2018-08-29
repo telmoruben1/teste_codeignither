@@ -6,21 +6,26 @@
      // document.cookie = "user=";
      // window.location.replace("http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/logout");
      // window.location.href='http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/logout';
-       // $.ajax({
-       //            type:"post",
-       //            url: "<?php echo base_url(); ?>/CodeIgniter-ponchaAdvisor/index.php/login/logout",
-       //            data: {"logado": 0},
-       //            success:function(data)
-       //            {
-       //                 alert("Record added successfully");
-       //            }
-       //            error: function()
-       //            {
-       //                alert('Something is wrong');
-       //            }
-       //        }
-       //    );
-
+     // console.log(base_url());
+     // $.ajax({
+     //   type: "post",
+     //   url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/logout",
+     //   cache: false,
+     //   data: {"logado":0},
+     //   success: function(response){
+     //     try{
+     //       console.log(response);
+     //
+     //
+     //     }catch(e) {
+     //       console.log(e);
+     //       alert('Exception while request..');
+     //     }
+     //   },
+     //   error: function(){
+     //     alert('Error while request..');
+     //   }
+     // });
 
       });
 
