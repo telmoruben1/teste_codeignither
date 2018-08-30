@@ -10,6 +10,8 @@ class Login extends CI_Controller
     parent::__construct();
     $this->load->model('login_model');
     $this->load->helper('url_helper');
+    // Load encryption library
+    // $this->load->library('encrypt');
   }
   public function index()
   {
@@ -23,6 +25,7 @@ class Login extends CI_Controller
 
   public function verifica_login()
   {
+
     $this->load->helper('form');
     $this->load->library('form_validation');
 
@@ -101,7 +104,7 @@ class Login extends CI_Controller
 
     // $data['title'] = 'Create a news item';
 
-    $this->form_validation->set_rules('user', 'USER', 'required');
+    $this->form_validation->set_rules('name', 'NAME', 'required');
     $this->form_validation->set_rules('password', 'PASS', 'required');
 
     if ($this->form_validation->run() === FALSE)
@@ -113,17 +116,27 @@ class Login extends CI_Controller
     }
     else
     {
+      $pass=$this->input->post('password');
+      // Encoding message
+      // $passEncrypt= $this->encrypt->encode($pass);
       $executa=$this->login_model->set_registo();
-      if($executa==true){
-        $data['email']=$_COOKIE["user"];
+      if($executa[0]==true){
+        $data['email']=$executa[1];
         $this->load->view('templates/header',$data);
-        $this->load->view('templates/carrossel');
+        $this->load->view('templates/success_user');
         $this->load->view('templates/footer');
-      }else{
+      }else if($executa[1]==true){
+        //erro ja existe um user com esse nome
+        $data['email']="";
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/erro_user');
+        $this->load->view('templates/footer');
+
+      }else {
+        //erro no registo
         $this->load->view('templates/header');
         $this->load->view('templates/carrossel');
         $this->load->view('templates/footer');
-
       }
 
     }

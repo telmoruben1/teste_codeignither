@@ -9,13 +9,16 @@ class Login_model extends CI_Model
   {
     $this->load->database();
     $this->load->helper('cookie');
+    // Load encryption library
+    // $this->load->library('encrypt');
   }
 
 
   public function set_verifica_login()
   {
     $this->load->helper('url');
-    $query = $this->db->get_where('login', array('email' => $this->input->post('user'),'password' => $this->input->post('password')));
+    $encrypt=hash('ripemd160', $this->input->post('password'));
+    $query = $this->db->get_where('login', array('email' => $this->input->post('user'),'password' => $encrypt));
     if($query->num_rows()>0){
       $data= array('logado' => TRUE );
       $this->db->where('email', $this->input->post('user'));
@@ -40,26 +43,32 @@ class Login_model extends CI_Model
   {
     $this->load->helper('url');
 
-
+    // $pass=$this->input->post('password');
+    // // Encoding message
+    // $passEncrypt= $this->encrypt->encode($pass);
+    $encrypt=hash('ripemd160', $this->input->post('password'));
     $data = array(
-      'user' => $this->input->post('user'),
-      'password' => $this->input->post('password'),
+      'password' => $encrypt,
       'email' => $this->input->post('email'),
       'phone' => $this->input->post('phone'),
+      'logado' => true,
       'name' => $this->input->post('name')
     );
-    if($this->db->insert('login', $data)==true){
-      // set_cookie("email",$this->input->post('email'));
-      // set_cookie("password",$this->input->post('password'));
-      setcookie("user",$this->input->post('email'));
-      setcookie("pass",$this->input->post('password'));
-      setcookie("logado",true);
-
-      return true;
+    $pesquisa=$this->db->get_where('login', array('email' => $this->input->post('email')));
+    if($pesquisa->num_rows()>0){
+      $array_registo=[false, true];
+      return $array_registo;
     }else{
+      if($this->db->insert('login', $data)==true){
 
-      return false;
+        $array_registo=[true, $this->input->post('email')];
+        return $array_registo;
+      }else{
+
+        return [false,false];
+      }
     }
+
   }
   public function set_logout($value)
   {

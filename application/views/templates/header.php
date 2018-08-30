@@ -6,6 +6,8 @@
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/footer.css">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/corrossel.css">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/tabela.css">
+    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/erro_user.css">
+    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/message_successUser.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="<?php echo base_url(). "js/header.js" ?>"></script>
     <script src="<?php echo base_url(). "js/tabela.js" ?>"></script>
@@ -81,10 +83,6 @@
                   <div class="form-group">
                     <label for="exampleDropdownFormEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" name="email" >
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleDropdownFormEmail1">User name</label>
-                    <input type="text" class="form-control" id="exampleDropdownFormEmail1" placeholder="user_name" name="user" >
                   </div>
                   <div class="form-group">
                     <label for="exampleDropdownFormPassword1">Password</label>
