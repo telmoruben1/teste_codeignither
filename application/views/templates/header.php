@@ -5,15 +5,18 @@
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/create.css">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/footer.css">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/corrossel.css">
-    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/tabela.css">
+    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/tabela1.css">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/erro_user.css">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/message_successUser.css">
+    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/avaliacao.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="<?php echo base_url(). "js/header.js" ?>"></script>
     <script src="<?php echo base_url(). "js/tabela.js" ?>"></script>
+    <script src="<?php echo base_url(). "js/avaliacao_main.js" ?>"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
   <body>
 
@@ -31,7 +34,7 @@
             <a class="nav-link text-warning" id="tabela" href="/CodeIgniter-ponchaAdvisor/index.php/pages/view_tabela/?.<?php echo $email?>">AS MELHORES <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-warning" href="">AVALIAR</a>
+            <a class="nav-link text-warning" href="/CodeIgniter-ponchaAdvisor/index.php/pages/view_avaliacao/?.<?php echo $email?>">AVALIAR</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-warning" href="#">MAPA</a>

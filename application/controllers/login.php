@@ -88,7 +88,6 @@ class Login extends CI_Controller
       $user_name=$_POST['user'];
       $executa=$this->login_model->get_verifica_logodo($user_name);
       if($executa==true){
-        // print_r($_COOKIE["user"]);
         echo true;
       }else{
         echo false;
@@ -97,6 +96,7 @@ class Login extends CI_Controller
 
 
   }
+  
   public function registo()
   {
     $this->load->helper('form');

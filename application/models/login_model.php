@@ -33,6 +33,7 @@ class Login_model extends CI_Model
 }
   public function get_verifica_logodo($variavel){
       $query = $this->db->get_where('login', array('email' => $variavel,'logado' => TRUE));
+      print_r($query);
       if($query->num_rows()>0){
         return true;
     }else{
