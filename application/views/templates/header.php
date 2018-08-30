@@ -23,10 +23,10 @@
         <ul class="navbar-nav mr-auto" style="margin-left: 20%;">
           <img src="<?php echo base_url('img/logo.png'); ?>" width="50" height="30"  class="d-inline-block align-top" alt="">
           <li class="nav-item">
-            <a class="nav-link text-warning" href="http://localhost/guiapratico17/index.php">HOME <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-warning" href="http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/verifica_login/?.<?php echo $email ?>">HOME <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link text-warning" id="tabela" href="/CodeIgniter-ponchaAdvisor/index.php/pages/view_tabela/?.<?php echo $email?>.">AS MELHORES <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-warning" id="tabela" href="/CodeIgniter-ponchaAdvisor/index.php/pages/view_tabela/?.<?php echo $email?>">AS MELHORES <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-warning" href="">AVALIAR</a>
@@ -48,7 +48,7 @@
             }else{
               ?>
                 <!-- <button class="btn btn-secondary text-warning" type="button" id="logout"  aria-haspopup="true" aria-expanded="false" > -->
-                <button class="logout2 btn btn-secondary text-warning"  type="button" value="LOGOUT" onclick="window.location.href='http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/logout'" />LOGOUT
+                <button class="logout2 btn btn-secondary text-warning"  type="button" value="LOGOUT" onclick="window.location.href='http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/logout/?.<?php echo $email ?>'" />LOGOUT
                 </button>
               <?php
             } ?>

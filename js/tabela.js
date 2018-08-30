@@ -3,18 +3,49 @@ $(document).ready(function(){
   $(".remove_button2").click(function(){
     console.log("remove");
      id_rio=$(this).val();
-    console.log(id);
+    // console.log(id_rio);
+    console.log();
+    var url=window.location.href;
+    var array_user=url.split('?.');
+    console.log(array_user[1]);
+    if(array_user[1] !=""){
+      console.log("apagou");
       $.ajax({
         type: "post",
-        url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/deleterow",
+        url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/verifica_user_logado",
         cache: false,
-        data: {"id_comentario":id},
+        data: {"user":array_user[1]},
         success: function(response){
           try{
             //console.log(response)  --> "Result";
             // console.log("deu");
-            alert("merda");
-            location.reload();
+            if(response==true){
+              console.log("deu logado");
+              $.ajax({
+                type: "post",
+                url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/deleterow",
+                cache: false,
+                data: {"id_comentario":id_rio},
+                success: function(response){
+                  try{
+                    //console.log(response)  --> "Result";
+                    // console.log("deu");
+                    location.reload();
+
+                  }catch(e) {
+                    console.log(e);
+                    alert('Exception while request..');
+                  }
+                },
+                error: function(){
+                  alert('Error while request..');
+                }
+              });
+            }else{
+              console.log("deu nao logado");
+            }
+
+            // location.reload();
 
           }catch(e) {
             console.log(e);
@@ -25,6 +56,33 @@ $(document).ready(function(){
           alert('Error while request..');
         }
       });
+
+    }else{
+      alert("Não tem permissao de remover");
+    }
+
+
+      // $.ajax({
+      //   type: "post",
+      //   url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/deleterow",
+      //   cache: false,
+      //   data: {"id_comentario":id},
+      //   success: function(response){
+      //     try{
+      //       //console.log(response)  --> "Result";
+      //       // console.log("deu");
+      //       alert("merda");
+      //       location.reload();
+      //
+      //     }catch(e) {
+      //       console.log(e);
+      //       alert('Exception while request..');
+      //     }
+      //   },
+      //   error: function(){
+      //     alert('Error while request..');
+      //   }
+      // });
   });
   $(".update_table").click(function(){
     console.log("update");
@@ -71,25 +129,61 @@ $(document).ready(function(){
     console.log(tit);
     console.log(classificacao);
     console.log(id_rio);
-    $.ajax({
-      type: "post",
-      url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/update_table",
-      cache: false,
-      data: {"id_comentario":id_rio,"titulo":tit,"classificacao":classificacao},
-      success: function(response){
-        try{
-          console.log("deu");
-          location.reload();
+    var url=window.location.href;
+    var array_user=url.split('?.');
+    console.log(array_user[1]);
+    if(array_user[1] !=""){
+      console.log("apagou");
+      $.ajax({
+        type: "post",
+        url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/login/verifica_user_logado",
+        cache: false,
+        data: {"user":array_user[1]},
+        success: function(response){
+          try{
+            //console.log(response)  --> "Result";
+            // console.log("deu");
+            if(response==true){
+              console.log("deu logado");
+              $.ajax({
+                type: "post",
+                url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/update_table",
+                cache: false,
+                data: {"id_comentario":id_rio,"titulo":tit,"classificacao":classificacao},
+                success: function(response){
+                  try{
+                    console.log("deu");
+                    location.reload();
 
-        }catch(e) {
-          console.log(e);
-          alert('Erro no cath');
+                  }catch(e) {
+                    console.log(e);
+                    alert('Erro no cath');
+                  }
+                },
+                error: function(){
+                  alert('Error no update');
+                }
+              });
+            }else{
+              console.log("deu nao logado");
+            }
+
+            // location.reload();
+
+          }catch(e) {
+            console.log(e);
+            alert('Exception while request..');
+          }
+        },
+        error: function(){
+          alert('Error while request..');
         }
-      },
-      error: function(){
-        alert('Error no update');
-      }
-    });
+      });
+
+    }else{
+      alert("Não tem permissao de remover");
+    }
+
   });
 
 

@@ -1,6 +1,6 @@
 <div class="container2">
   <div class="tabela">
-    <form method="post" action="/CodeIgniter-ponchaAdvisor/index.php/tabela/verifica_pesquisa">
+    <form method="post" action="/CodeIgniter-ponchaAdvisor/index.php/tabela/verifica_pesquisa/?.<?php echo $email ?>">
       <div class="form-row align-items-center">
         <div class="col-auto">
           <input type="text" class="form-control mb-2" id="titulo" placeholder="titulo" name="titulo">

@@ -17,6 +17,7 @@
       $data['email'] = "";
       // unset($_COOKIE["logado"]);
       set_cookie("logado",0);
+      
       $this->load->view('templates/header',$data);
       $this->load->view('templates/carrossel',$data);
       $this->load->view('templates/footer',$data);

@@ -27,24 +27,14 @@ class Login extends CI_Controller
     $this->load->library('form_validation');
 
     // $data['title'] = 'Create a news item';
-
-    $this->form_validation->set_rules('user', 'USER', 'required');
-    $this->form_validation->set_rules('password', 'PASS', 'required');
-
-    if ($this->form_validation->run() === FALSE)
-    {
-      $this->load->view('templates/header');
-      $this->load->view('templates/corrossel');
-      $this->load->view('templates/footer');
-
-    }
-    else
-    {
-      $executa=$this->login_model->set_verifica_login();
+    $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+    if(!empty($array_auxiliar[1])){
+      $array_email1=explode('.',$array_auxiliar[1]);
+      $email_pronto=$array_email1[0].".".$array_email1[1];
+      $executa=$this->login_model->get_verifica_logodo($email_pronto);
       if($executa==true){
         // print_r($_COOKIE["user"]);
-        $user=$_COOKIE["user"];
-        $data['email']=$user;
+        $data['email']=$email_pronto;
         $this->load->view('templates/header',$data);
         $this->load->view('templates/carrossel');
         $this->load->view('templates/footer');
@@ -56,8 +46,53 @@ class Login extends CI_Controller
         $this->load->view('templates/footer');
 
       }
+    }else{
+      $this->form_validation->set_rules('user', 'USER', 'required');
+      $this->form_validation->set_rules('password', 'PASS', 'required');
 
+      if ($this->form_validation->run() === FALSE)
+      {
+        $this->load->view('templates/header');
+        $this->load->view('templates/corrossel');
+        $this->load->view('templates/footer');
+
+      }
+      else
+      {
+        $executa=$this->login_model->set_verifica_login();
+        if($executa[0]==true){
+          // print_r($_COOKIE["user"]);
+          $data['email']=$executa[1];
+          $this->load->view('templates/header',$data);
+          $this->load->view('templates/carrossel');
+          $this->load->view('templates/footer');
+        }else{
+          // print_r($_COOKIE["user"]);
+          $data['email']="";
+          $this->load->view('templates/header',$data);
+          $this->load->view('templates/carrossel');
+          $this->load->view('templates/footer');
+
+        }
+
+      }
     }
+
+  }
+  public function verifica_user_logado()
+  {
+    $this->load->helper('form');
+      $user_name=$_POST['user'];
+      $executa=$this->login_model->get_verifica_logodo($user_name);
+      if($executa==true){
+        // print_r($_COOKIE["user"]);
+        echo true;
+      }else{
+        echo false;
+
+      }
+
+
   }
   public function registo()
   {
@@ -95,15 +130,26 @@ class Login extends CI_Controller
   }
   public function logout()
   {
-    // $teste=$this->input->post('user');
-    // unset($_COOKIE["logado"]);
-    // set_cookie("logado",0);
-    // print_r("deu");
-    $_COOKIE['logado']=0;
-    $data['email']="";
-    $this->load->view('templates/header',$data);
-    $this->load->view('templates/carrossel');
-    $this->load->view('templates/footer');
+    $array_auxiliar=explode('?.',$_SERVER['REQUEST_URI']);
+    if(!empty($array_auxiliar[1])){
+      $executa=$this->login_model->set_logout($array_auxiliar[1]);
+      if($executa==true){
+        // print_r($_COOKIE["user"]);
+        $data['email']="";
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/carrossel');
+        $this->load->view('templates/footer');
+      }else{
+        // print_r($_COOKIE["user"]);
+        print_r("erro");
+        $data['email']="erro";
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/carrossel');
+        $this->load->view('templates/footer');
+
+      }
+    }
+
   }
 
 }
