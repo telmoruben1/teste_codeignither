@@ -23,13 +23,11 @@ class avaliacao_model extends CI_Model
       'id_utilizador'=> $_POST['id_utilizador']
 
     );
-    if($this->db->insert('cometarios', $data)==true){
+    $result=$this->db->insert('comentarios', $data);
+    return $result;
 
-      return true;
-    }else{
 
-      return false;
-    }
+
   }
 
 

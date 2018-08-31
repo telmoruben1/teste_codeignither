@@ -28,10 +28,7 @@ $(document).ready(function(){
                 data: {"id_comentario":id_rio},
                 success: function(response){
                   try{
-                    //console.log(response)  --> "Result";
-                    // console.log("deu");
                     location.reload();
-
                   }catch(e) {
                     console.log(e);
                     alert('Exception while request..');
@@ -61,28 +58,6 @@ $(document).ready(function(){
       alert("Não tem permissao de remover");
     }
 
-
-      // $.ajax({
-      //   type: "post",
-      //   url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/deleterow",
-      //   cache: false,
-      //   data: {"id_comentario":id},
-      //   success: function(response){
-      //     try{
-      //       //console.log(response)  --> "Result";
-      //       // console.log("deu");
-      //       alert("merda");
-      //       location.reload();
-      //
-      //     }catch(e) {
-      //       console.log(e);
-      //       alert('Exception while request..');
-      //     }
-      //   },
-      //   error: function(){
-      //     alert('Error while request..');
-      //   }
-      // });
   });
   $(".update_table").click(function(){
     console.log("update");
@@ -92,25 +67,6 @@ $(document).ready(function(){
     $(".tabela2").css('display','none');
     $(".tabela").css('display','none');
 
-      // $.ajax({
-      //   type: "post",
-      //   url: "http://localhost/CodeIgniter-ponchaAdvisor/index.php/tabela/deleterow",
-      //   cache: false,
-      //   data: {"id_comentario":id},
-      //   success: function(response){
-      //     try{
-      //       console.log("deu");
-      //       location.reload();
-      //
-      //     }catch(e) {
-      //       console.log(e);
-      //       alert('Exception while request..');
-      //     }
-      //   },
-      //   error: function(){
-      //     alert('Error while request..');
-      //   }
-      // });
   });
   $(".close").click(function(){
     $("#janelaUpdate").css('display','none');
@@ -152,7 +108,7 @@ $(document).ready(function(){
                 data: {"id_comentario":id_rio,"titulo":tit,"classificacao":classificacao},
                 success: function(response){
                   try{
-                    console.log("deu");
+                    
                     location.reload();
 
                   }catch(e) {

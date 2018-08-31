@@ -28,26 +28,21 @@ class Tabela_model extends CI_Model
     }else{
       return false;
     }
-
-
   }
+
   public function delete_row_of_table($value)
   {
     $this->load->helper('url');
-
-
     $data = array(
       'id' => $value
     );
     if($this->db->delete('comentarios', $data)==true){
       return true;
     }else{
-
       return false;
     }
-
-
   }
+  
   public function update_row_of_table($id,$data)
   {
     $this->load->helper('url');
@@ -57,11 +52,6 @@ class Tabela_model extends CI_Model
     }else{
       return false;
     }
-
-
-
-
-
   }
 
 
